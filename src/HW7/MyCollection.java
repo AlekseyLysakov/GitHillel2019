@@ -32,7 +32,6 @@ public class MyCollection {
 }
 
 class Collection {
-    int count = 0;
     String[] array;
 
     Collection() {
@@ -40,6 +39,7 @@ class Collection {
     }
 
     public int getSize() {
+    int count = 0;
         for (int i = 0; i < array.length; i++) {
             if (array[i] != null)
                 count += 1;
@@ -47,27 +47,28 @@ class Collection {
         return count;
     }
 
-    public boolean add(String x) {
-        if (getSize() == array.length - 1) {
-            String[] array2 = new String[16];
-            for (int i = 0; i < array2.length; i++) {
+    public boolean add(String str) {
+        if (getSize() + 1 <= array.length) {
+            array[getSize()] = str;
+        } else {
+            String[] array2 = new String[(int) (array.length * 1.6)];
+            for (int i = 0; i < getSize(); i++) {
                 array2[i] = array[i];
             }
-            return false;
-        } else {
-            array[getSize()+1] = x;
+            array2[getSize()] = str;
+            array = array2;
         }
         return true;
     }
 
     public boolean delete(int index) { // удаление значения по индексу
         if (index < array.length - 1) {
-            for (int i = index; i < array.length; i++) {
-                array[index] = array[index + 1];
+            for (int i = index; i < array.length-1; i++) {
+                array[i] = array[i + 1];
             }
             return true;
         } else if (index == array.length - 1) {
-            array[array.length - 1] = null;
+            array[index] = null;
             return true;
         } else {
             return false;
@@ -75,27 +76,23 @@ class Collection {
     }
 
     public boolean delete1(String x) { // удаление значения по значению
-        for (String i : array) {
-            if (i == x) {
-                for (int a = 0; a < array.length; a++) {
-                    if (array[a] == x) {
-                        if (a < array.length - 1) {
-                            array[a] = array[a + 1];
-                            return true;
-                        } else if (a == array.length - 1) {
-                            array[array.length - 1] = null;
-                            return true;
-                        }
-                    }
+        for (int a = 0; a < array.length; a++) {
+            if (array[a] == x) {
+                for (int i = a; i < array.length - 1; i++) {
+                    array[i] = array[i + 1];
                 }
+                array[array.length - 1] = null;
+                return true;
             }
         }
         return false;
     }
 
     public boolean contains(String x) {
-        for (String i : array) {
-            return (i == x);
+        for (int i = 0; i <array.length ; i++) {
+            if(array[i] == x){
+                return true;
+            }
         }
         return false;
     }
@@ -107,17 +104,13 @@ class Collection {
                     return array[i];
                 }
             }
-        } else {
-            return "Вы ввели несуществующий индекс массива";
         }
-        return null;
+        return "Вы ввели несуществующий индекс массива";
     }
 
     public boolean clear() {
         for (int i = 0; i < array.length; i++) {
-            if (array[i] != null) {
-                array[i] = null;
-            }
+            array[i] = null;
         }
         return true;
     }
@@ -136,12 +129,11 @@ class Collection {
         if (this == o) return true;
         if (o == null || getClass() != o.getClass()) return false;
         Collection that = (Collection) o;
-        return count == that.count &&
-                Arrays.equals(array, that.array);
+        return Arrays.equals(array, that.array);
     }
 
     @Override
     public int hashCode() {
-        return 0;
+        return Arrays.hashCode(array);
     }
 }
