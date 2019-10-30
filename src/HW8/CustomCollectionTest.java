@@ -43,7 +43,6 @@ public class CustomCollectionTest {
         }
         System.out.println(System.nanoTime() + " ms");
 
-
     }
 }
 

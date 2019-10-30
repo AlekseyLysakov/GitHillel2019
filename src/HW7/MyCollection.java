@@ -6,27 +6,24 @@ import kotlin.collections.unsigned.UArraysKt;
 import java.util.Arrays;
 import java.util.Objects;
 
+/*
+HW7
+Реализовать простую коллекцию для String на базе массива.
+добавить следующие методы для работы с коллекцией:
+добавлять (add),
+удалять(delete),
+доставать по индексу (get),
+проверять наличие элемента (contains),
+проверять на равенство (equals),
+очищать (clear),
+находить индекс элемента (find or indexOf),
+узнавать размер (getSize).
+ */
+
 public class MyCollection {
 
     public static void main(String[] args) {
 
-        Collection coll = new Collection();
-        coll.array[0] = "содержит";
-        coll.array[1] = "не содержит";
-
-        Collection coll1 = new Collection();
-        coll1.array[0] = "содержит";
-        coll1.array[1] = "не содержит";
-
-        System.out.println(coll.getSize());
-        System.out.println(coll.add("добавленное значение"));
-        System.out.println(coll.delete(9));
-        System.out.println(coll.contains("содержит"));
-        System.out.println(coll.delete1("содержит"));
-        System.out.println(coll.get(9));
-        System.out.println(coll.clear());
-        System.out.println(coll.findOrIndexOf("содержит"));
-        System.out.println(coll.equals(coll1));
 
     }
 }
