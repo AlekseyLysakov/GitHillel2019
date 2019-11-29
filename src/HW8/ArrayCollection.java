@@ -6,7 +6,7 @@ import java.util.Objects;
 public class ArrayCollection<E> implements CustomCollection<E> {
     Object[] array;
 
-    ArrayCollection() {
+    public ArrayCollection() {
         array = new Object[10];
     }
 
@@ -168,5 +168,18 @@ public class ArrayCollection<E> implements CustomCollection<E> {
     @Override
     public String toString() {
         return Arrays.toString(Arrays.copyOfRange(array, 0, size()));
+    }
+
+    @Override
+    public boolean equals(Object o) {
+        if (this == o) return true;
+        if (o == null || getClass() != o.getClass()) return false;
+        ArrayCollection<?> that = (ArrayCollection<?>) o;
+        return Arrays.equals(array, that.array);
+    }
+
+    @Override
+    public int hashCode() {
+        return Arrays.hashCode(array);
     }
 }
