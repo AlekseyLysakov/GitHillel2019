@@ -25,5 +25,6 @@ public class DataPool {
         }
         data++;
         System.out.println("Producer put data, data in pool: " + data);
+        notify();
     }
 }
